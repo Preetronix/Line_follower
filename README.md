@@ -22,7 +22,6 @@ A two-wheeled, camera-based autonomous robot project combining **ROS 2 + Gazebo 
 ```text
 camera-based-line-following-robot/
 ├── README.md
-├── docs/                         # system architecture, setup, validation notes
 ├── cad/
 │   ├── step/                     # Onshape-compatible coloured STEP assemblies
 │   ├── stl/                      # Static mesh exports
