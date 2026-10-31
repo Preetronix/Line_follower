@@ -56,10 +56,10 @@ Target environment: ** Pixi 0.81.0, ROS 2 Jazzy, Gazebo Harmonic **.
 
 | Parameter | Value |
 |---|---:|
-| Chassis: 180 × 130 × 4 mm
-| Wheel diameter: 69 mm
-| Wheel track: 167 mm
-| Overall robot: 188.25 × 186 × 75.5 mm
+| Chassis | 180 × 130 × 4 mm
+| Wheel diameter| 69 mm
+| Wheel track | 167 mm
+| Overall robot | 188.25 × 186 × 75.5 mm
 
 The Gazebo physics chassis is derived from an .stl model thus has no colour.
 
