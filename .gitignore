@@ -1,0 +1,25 @@
+# ROS 2 / colcon
+**/build/
+**/install/
+**/log/
+**/.colcon/
+**/gazebo_smoke_test.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# CAD temporary/backup files
+*.FCStd1
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/

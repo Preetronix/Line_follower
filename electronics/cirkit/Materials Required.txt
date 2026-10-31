@@ -1,0 +1,7 @@
+1. 2 x Gear Motor
+2. L298 motor driver
+3. Raspberry Pi Camera Module 3
+4. Raspberry Pi Zero 2W
+5. 12V DC Power Source
+6. 5V Dc Power Source
+7. Wires
