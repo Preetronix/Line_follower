@@ -28,7 +28,7 @@ class LineFollowerNode(Node):
             10
         )
 
-        # Robot motion settings
+        
         self.base_speed = 0.1
         self.max_angular = 0.4
         self.min_dark_pixels = 10
@@ -38,7 +38,7 @@ class LineFollowerNode(Node):
         self.ki = 0.0
         self.kd = 0.0
 
-        # PID memory
+        
         self.integral = 0.0
         self.previous_error = None
         self.previous_time = None
@@ -91,7 +91,7 @@ class LineFollowerNode(Node):
 
         command = Twist()
 
-        # LINE DETECTED
+        
         if dark_pixels >= self.min_dark_pixels:
             moments = cv2.moments(roi)
 
@@ -100,15 +100,15 @@ class LineFollowerNode(Node):
                 self.cmd_pub.publish(command)
                 return
 
-            # Find horizontal center of detected dark pixels
+           
             center_x = (
                 moments['m10'] / moments['m00']
             )
 
-            # Positive error means line is right of image center
+            
             error = center_x - width / 2.0
 
-            # Calculate elapsed time and derivative
+            
             if self.previous_time is None:
                 dt = 0.0
                 derivative = 0.0
@@ -122,24 +122,24 @@ class LineFollowerNode(Node):
                 else:
                     derivative = 0.0
 
-            # Accumulate error for integral action
+            
             if dt > 0:
                 self.integral += error * dt
 
-            # Clamp integral to limit windup
+            
             self.integral = max(
                 -1000.0,
                 min(1000.0, self.integral)
             )
 
-            # PID terms
+            
             p_term = self.kp * error
             i_term = self.ki * self.integral
             d_term = self.kd * derivative
 
             correction = p_term + i_term + d_term
 
-            # Preserve the original steering convention
+            
             angular = -correction
 
             angular = max(
@@ -147,7 +147,7 @@ class LineFollowerNode(Node):
                 min(self.max_angular, angular)
             )
 
-            # Slow down when steering correction is large
+            
             turn_fraction = min(
                 abs(angular) / self.max_angular,
                 1.0
@@ -165,11 +165,11 @@ class LineFollowerNode(Node):
             elif angular > 0.01:
                 self.last_turn_direction = 1
 
-            # Save current values for the next callback
+            
             self.previous_error = error
             self.previous_time = now
 
-            # Clear line-loss state
+            
             self.line_lost_since = None
 
             self.get_logger().info(
@@ -182,8 +182,6 @@ class LineFollowerNode(Node):
                 f'Angular: {angular:.3f}',
                 throttle_duration_sec=0.5
             )
-
-        # LINE LOST
         else:
             self.reset_pid()
             self.handle_line_loss(command, now)
@@ -195,9 +193,7 @@ class LineFollowerNode(Node):
             self.line_lost_since = now
 
         lost_time = now - self.line_lost_since
-
-        # Search in the last known steering direction.
-        # Reverse direction after the search interval.
+        
         direction = self.last_turn_direction
         command.linear.x = 0.0
         command.angular.z = direction * 0.15
