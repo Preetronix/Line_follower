@@ -13,7 +13,7 @@ A two-wheeled, camera-based autonomous robot project combining **ROS 2 + Gazebo 
 | Vision |Raspberry Pi Camera module 3; OpenCV image processing |
 | Drive | Two geared DC motors, two motored wheels, one front caster |
 | Motor control | 1 x L298 dual H-bridge motor driver |
-| CAD | Design made on Onshape |
+| CAD | Design made on FreeCAD |
 | Simulation | ROS 2 Jazzy + Gazebo Harmonic; four-wheel differential drive |
 | Line sensors | None — camera-only line detection |
 
